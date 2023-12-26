@@ -42,7 +42,6 @@ public class PlateauManager : MonoBehaviour{
 
         AddBloc(0,7,sand);
         AddBloc(0,6,sand);
-        //AddBloc(0,5,leftSlip);
 
         AddBloc(0,2,sand);
         AddBloc(0,0,leftSlip);
