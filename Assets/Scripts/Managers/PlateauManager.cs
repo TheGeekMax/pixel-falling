@@ -16,6 +16,7 @@ public class PlateauManager : MonoBehaviour{
     public GameObject leftSlip;
     public GameObject unifier;
     public GameObject splitter;
+
     void Awake(){
         if(instance == null){
             instance = this;
