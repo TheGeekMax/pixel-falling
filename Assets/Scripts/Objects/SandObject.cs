@@ -20,7 +20,7 @@ public class SandObject : BlocInterface{
 
     public override DataSand[] GetNextStateData(int x, int y, GameObject[,] plateau){
         Visit();
-        if(getCell(x,y-1,plateau) == null && IsInBounds(x,y-1)){
+        if(GetCell(x,y-1,plateau) == null && IsInBounds(x,y-1)){
             SetMoveState(true);
             return new DataSand[]{new SandMove(new Vector2Int(x,y),new Vector2Int(x,y-1))};
         }
