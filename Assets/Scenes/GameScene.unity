@@ -263,7 +263,8 @@ MonoBehaviour:
   width: 8
   sand: {fileID: 3652224721882195042, guid: 674e3f2a78a80e0c88ee37a09f12e397, type: 3}
   leftSlip: {fileID: 2994435836225178483, guid: 23208c978318b9cedb7df33b7963005d, type: 3}
-  unifier: {fileID: 0}
+  unifier: {fileID: 4667267696417905380, guid: 8b1025b9eb5ee5df4b139c44af57aa0b, type: 3}
+  splitter: {fileID: 4427966591618437545, guid: 4b064d9a995e0b505be46e9d91556242, type: 3}
 --- !u!114 &1423398752
 MonoBehaviour:
   m_ObjectHideFlags: 0

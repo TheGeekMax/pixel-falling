@@ -37,7 +37,7 @@ public class BlocInterface : MonoBehaviour {
         return "";
     }
 
-    public GameObject getCell(int x, int y, GameObject[,] plateau){
+    public GameObject GetCell(int x, int y, GameObject[,] plateau){
         if(x < 0 || x >= PlateauManager.instance.width || y < 0 || y >= PlateauManager.instance.width){
             return null;
         }

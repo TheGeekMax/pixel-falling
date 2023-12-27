@@ -15,6 +15,7 @@ public class PlateauManager : MonoBehaviour{
     public GameObject sand;
     public GameObject leftSlip;
     public GameObject unifier;
+    public GameObject splitter;
     void Awake(){
         if(instance == null){
             instance = this;
@@ -37,14 +38,8 @@ public class PlateauManager : MonoBehaviour{
         }
 
         AddBloc(2,7,sand);
-        AddBloc(2,5,leftSlip);
+        AddBloc(2,5,splitter);
         AddBloc(1,3,unifier);
-
-        AddBloc(0,7,sand);
-        AddBloc(0,6,sand);
-
-        AddBloc(0,2,sand);
-        AddBloc(0,0,leftSlip);
 
         initialized = true;
     }

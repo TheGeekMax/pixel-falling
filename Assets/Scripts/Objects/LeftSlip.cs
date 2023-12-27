@@ -11,10 +11,10 @@ public class LeftSlip : BlocInterface{
 
     public override DataSand[] GetNextStateData(int x, int y, GameObject[,] plateau){
         Visit();
-        if(getCell(x,y+1,plateau) != null){
-            BlocInterface bloc = getCell(x,y+1,plateau).GetComponent<BlocInterface>();
+        if(GetCell(x,y+1,plateau) != null){
+            BlocInterface bloc = GetCell(x,y+1,plateau).GetComponent<BlocInterface>();
             if(bloc.GetName() == "Sand" && !bloc.IsMoving() &&
-               getCell(x-1,y,plateau) == null && IsInBounds(x-1,y)){
+               GetCell(x-1,y,plateau) == null && IsInBounds(x-1,y)){
                 Visit();
                 bloc.Visit();
                 bloc.SetMoveState(true);
