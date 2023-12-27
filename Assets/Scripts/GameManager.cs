@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour{
     }
 
     void Start(){
+        BlocManager.instance.Initialize();
         PlateauManager.instance.Initialize();
         PlayManager.instance.Initialize();
     }

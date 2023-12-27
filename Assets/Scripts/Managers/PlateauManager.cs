@@ -37,10 +37,11 @@ public class PlateauManager : MonoBehaviour{
                 plateau[i,j] = null;
             }
         }
-
-        AddBloc(2,7,sand);
-        AddBloc(2,5,splitter);
-        AddBloc(1,3,unifier);
+        BlocManager blocManager = BlocManager.instance;
+        AddBloc(2,7,blocManager.GetBloc("sand"));
+        AddBloc(2,5,blocManager.GetBloc("splitter"));
+        AddBloc(1,3,blocManager.GetBloc("unifier_red"));
+        AddBloc(1,1,blocManager.GetBloc("slipper_left"));
 
         initialized = true;
     }
