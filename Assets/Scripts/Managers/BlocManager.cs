@@ -37,7 +37,15 @@ public class BlocManager : MonoBehaviour{
         return null;
     }
 
+    public GameObject GetBloc(int index){
+        return blocs[index].prefab;
+    }
+
     public GameObject GetBloc(string name){
         return GetBlocData(name).prefab;
+    }
+
+    public int GetLength(){
+        return blocs.Length;
     }
 }

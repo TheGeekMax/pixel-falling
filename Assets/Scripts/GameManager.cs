@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour{
         BlocManager.instance.Initialize();
         PlateauManager.instance.Initialize();
         PlayManager.instance.Initialize();
+        ToolManager.instance.Initialize();
+        TouchManager.instance.Initialize();
     }
 
     // Update is called once per frame

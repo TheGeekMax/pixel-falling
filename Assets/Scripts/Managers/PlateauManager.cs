@@ -37,12 +37,6 @@ public class PlateauManager : MonoBehaviour{
                 plateau[i,j] = null;
             }
         }
-        BlocManager blocManager = BlocManager.instance;
-        AddBloc(2,7,blocManager.GetBloc("sand"));
-        AddBloc(2,5,blocManager.GetBloc("splitter"));
-        AddBloc(1,3,blocManager.GetBloc("unifier_red"));
-        AddBloc(1,1,blocManager.GetBloc("slipper_left"));
-
         initialized = true;
     }
 
@@ -93,14 +87,9 @@ public class PlateauManager : MonoBehaviour{
         return plateau[x,y];
     }
 
-
-    //ondrawgizmos
-    void OnDrawGizmos(){
-        for(int i = 0; i < width; i ++){
-            for(int j = 0; j < width; j ++){
-                Gizmos.color = Color.red;
-                Gizmos.DrawWireCube(new Vector3(i,j,0),new Vector3(1,1,0));
-            }
-        }
+    public void RemoveBloc(int x, int y){
+        if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] == null) return;
+        Destroy(plateau[x,y]);
+        plateau[x,y] = null;
     }
 }
