@@ -20,7 +20,7 @@ public class Generator : BlocInterface{
             GameObject newSand = Instantiate(BlocManager.instance.GetBloc("sand"), Vector3.zero,Quaternion.identity);
             newSand.GetComponent<SandObject>().Visit();
             newSand.GetComponent<SandObject>().SetMoveState(true);
-            return new DataSand[]{new SandCreate(new Vector2Int(x,y-1),newSand)};
+            return new DataSand[]{new SandCreate(new Vector2Int(x,y), new Vector2Int(x,y-1),newSand)};
         }
         return null;
     }

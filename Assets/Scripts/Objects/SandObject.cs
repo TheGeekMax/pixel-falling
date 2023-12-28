@@ -6,6 +6,7 @@ public class SandObject : BlocInterface{
     public Vector3Int color;
 
     public void Update(){
+        base.Update();
         UpdateColor();
     }
 

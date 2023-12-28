@@ -12,7 +12,7 @@ public class Splitter : BlocInterface{
     public override DataSand[] GetNextStateData(int x, int y, GameObject[,] plateau){
         Visit();
 
-        if(GetCell(x,y+1,plateau) == null || GetCell(x,y+1,plateau).GetComponent<BlocInterface>().GetName() != "Sand"){
+        if(GetCell(x,y+1,plateau) == null || GetCell(x,y+1,plateau).GetComponent<BlocInterface>().GetName() != "Sand" || GetCell(x,y+1,plateau).GetComponent<SandObject>().IsMoving()){
             return null;
         }
 
@@ -41,7 +41,7 @@ public class Splitter : BlocInterface{
             newSand.GetComponent<SandObject>().SetMoveState(true);
             return new DataSand[]{
                 new SandMove(new Vector2Int(x,y+1),new Vector2Int(x+1,y)),
-                new SandCreate(new Vector2Int(x-1,y),newSand),
+                new SandCreate(new Vector2Int(x,y+1), new Vector2Int(x-1,y),newSand),
             };
         }
         return null;

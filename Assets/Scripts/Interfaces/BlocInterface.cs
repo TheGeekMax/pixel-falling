@@ -32,6 +32,17 @@ public class BlocInterface : MonoBehaviour {
         return moving;
     }
 
+    //fonctions pour les animations
+    public Vector3 TargetPosition;
+
+    public void Update(){
+        transform.position = Vector3.Lerp(transform.position,TargetPosition,Time.deltaTime * 10);
+    }
+
+    public void SetTargetPosition(Vector2Int pos){
+        TargetPosition = new Vector3(pos.x,pos.y,0);
+    }
+
     //fonctions relative au bloc
     public virtual string GetName(){
         return "";
