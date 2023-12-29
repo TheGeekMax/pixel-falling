@@ -10,7 +10,8 @@ public class Trash : BlocInterface{
 
     public override DataSand[] GetNextStateData(int x, int y, GameObject[,] plateau){
         Visit();
-        if(GetCell(x,y+1,plateau) != null && GetCell(x,y+1,plateau).GetComponent<BlocInterface>().GetName() == "Sand"){
+        if(GetCell(x,y+1,plateau) != null && GetCell(x,y+1,plateau).GetComponent<BlocInterface>().GetName() == "Sand" &&
+           GetCell(x,y+1,plateau).GetComponent<SandObject>().IsMoving() == false){
             return new DataSand[]{
                 new SandRemove(new Vector2Int(x,y+1)),
             };
