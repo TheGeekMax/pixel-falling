@@ -37,12 +37,6 @@ public class PlateauManager : MonoBehaviour{
                 plateau[i,j] = null;
             }
         }
-        BlocManager blocManager = BlocManager.instance;
-        AddBloc(2,7,blocManager.GetBloc("sand"));
-        AddBloc(2,5,blocManager.GetBloc("splitter"));
-        AddBloc(1,3,blocManager.GetBloc("unifier_red"));
-        AddBloc(1,1,blocManager.GetBloc("slipper_left"));
-
         initialized = true;
     }
 
@@ -55,14 +49,14 @@ public class PlateauManager : MonoBehaviour{
                     if(data != null){
                         foreach(DataSand d in data){
                             if(d.ToCreate()){
-                                AddBlocWithoutInstantiate(d.newCoord.x,d.newCoord.y,d.GetBloc());
+                                AddBlocWithoutInstantiate(d.oldCoord,d.newCoord,d.GetBloc());
                             }else if(d.ToDestroy()){
                                 Destroy(plateau[d.oldCoord.x,d.oldCoord.y]);
                                 plateau[d.oldCoord.x,d.oldCoord.y] = null;
                             }else{ //on move
                                 plateau[d.newCoord.x,d.newCoord.y] = plateau[d.oldCoord.x,d.oldCoord.y];
                                 plateau[d.oldCoord.x,d.oldCoord.y] = null;
-                                plateau[d.newCoord.x,d.newCoord.y].transform.position = new Vector3(d.newCoord.x,d.newCoord.y,0);
+                                plateau[d.newCoord.x,d.newCoord.y].GetComponent<BlocInterface>().SetTargetPosition(d.newCoord);
                             }
                         }
                     }
@@ -83,24 +77,21 @@ public class PlateauManager : MonoBehaviour{
     public GameObject AddBloc(int x, int y,GameObject bloc){
         if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] != null) return null;
         plateau[x,y] = Instantiate(bloc,new Vector3(x,y,0),Quaternion.identity) as GameObject;
+        plateau[x,y].GetComponent<BlocInterface>().SetTargetPosition(new Vector2Int(x,y));
         return plateau[x,y];
     }
 
-    public GameObject AddBlocWithoutInstantiate(int x, int y,GameObject bloc){
-        if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] != null) return null;
-        plateau[x,y] = bloc;
-        plateau[x,y].transform.position = new Vector3(x,y,0);
-        return plateau[x,y];
+    public GameObject AddBlocWithoutInstantiate(Vector2Int cur, Vector2Int target,GameObject bloc){
+        if(target.x < 0 || target.x >= width || target.y < 0 || target.y >= width || plateau[target.x,target.y] != null) return null;
+        plateau[target.x,target.y] = bloc;
+        plateau[target.x,target.y].transform.position = new Vector3(cur.x,cur.y,0);
+        plateau[target.x,target.y].GetComponent<BlocInterface>().SetTargetPosition(target);
+        return plateau[target.x,target.y];
     }
 
-
-    //ondrawgizmos
-    void OnDrawGizmos(){
-        for(int i = 0; i < width; i ++){
-            for(int j = 0; j < width; j ++){
-                Gizmos.color = Color.red;
-                Gizmos.DrawWireCube(new Vector3(i,j,0),new Vector3(1,1,0));
-            }
-        }
+    public void RemoveBloc(int x, int y){
+        if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] == null) return;
+        Destroy(plateau[x,y]);
+        plateau[x,y] = null;
     }
 }

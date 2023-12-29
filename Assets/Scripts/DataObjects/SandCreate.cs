@@ -13,7 +13,8 @@ public class SandCreate : DataSand{
         return true;
     }
 
-    public SandCreate(Vector2Int newCoord, GameObject toInstantiate){
+    public SandCreate(Vector2Int origin,Vector2Int newCoord, GameObject toInstantiate){
+        this.oldCoord = origin;
         this.toInstantiate = toInstantiate;
         this.newCoord = newCoord;
     }
