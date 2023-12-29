@@ -7,6 +7,12 @@ public class BinarySlipper : BlocInterface{
     public Sprite spriteRight;
 
     private int state = 0; //0 = left, 1 = right
+
+    public override void ResetSave(){
+        base.ResetSave();
+        state = 0;
+        GetComponent<SpriteRenderer>().sprite = spriteLeft;
+    }
     
     public override string GetName(){
         return "Slipper-binary";

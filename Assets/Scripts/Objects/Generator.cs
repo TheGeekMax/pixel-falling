@@ -9,6 +9,11 @@ public class Generator : BlocInterface{
         return "Generator";
     }
 
+    public override void ResetSave(){
+        base.ResetSave();
+        timer = 5;
+    }
+
 
     public override DataSand[] GetNextStateData(int x, int y, GameObject[,] plateau){
         if(timer > 0){

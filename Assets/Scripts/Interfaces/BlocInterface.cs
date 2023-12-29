@@ -32,15 +32,32 @@ public class BlocInterface : MonoBehaviour {
         return moving;
     }
 
+    bool toSave = false;
+    public Vector2Int saveCoors;
+    public void Save(Vector2Int coors){
+        toSave = true;
+        saveCoors = coors;
+    }
+
+    public virtual void ResetSave(){
+        toSave = false;
+        //on remet le bloc a sa place
+        targetPosition = new Vector3(saveCoors.x,saveCoors.y,0);
+    }
+
+    public bool GetSave(){
+        return toSave;
+    }
+
     //fonctions pour les animations
-    public Vector3 TargetPosition;
+    public Vector3 targetPosition;
 
     public void Update(){
-        transform.position = Vector3.Lerp(transform.position,TargetPosition,Time.deltaTime * 10);
+        transform.position = Vector3.Lerp(transform.position,targetPosition,Time.deltaTime * 10);
     }
 
     public void SetTargetPosition(Vector2Int pos){
-        TargetPosition = new Vector3(pos.x,pos.y,0);
+        targetPosition = new Vector3(pos.x,pos.y,0);
     }
 
     //fonctions relative au bloc
