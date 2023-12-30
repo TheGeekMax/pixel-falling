@@ -41,13 +41,9 @@ public class ReplayManager : MonoBehaviour{
     public void RemoveBloc(Vector2Int coors, GameObject[,] plateau){
         if(plateau[coors.x,coors.y] != null && plateau[coors.x,coors.y].GetComponent<BlocInterface>().GetSave()){
             removed.Add(plateau[coors.x,coors.y]);
-            plateau[coors.x,coors.y].SetActive(false);
-            plateau[coors.x,coors.y] = null;
-        }else if(plateau[coors.x,coors.y] != null){
-            //on le detruit
-            Destroy(plateau[coors.x,coors.y]);
-            plateau[coors.x,coors.y] = null;
         }
+        plateau[coors.x,coors.y].GetComponent<BlocInterface>().Disapear();
+        plateau[coors.x,coors.y] = null;
     }
 
     public void LoadState(GameObject[,] plateau){

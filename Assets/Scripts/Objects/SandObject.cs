@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class SandObject : BlocInterface{
     public Vector3Int color;
+    private Vector3Int originColor;
+
+    private Vector3 currentColor;
+    
+
+    public void Start(){
+        originColor = color;
+        currentColor = color;
+    }
+
+    public override void ResetSave(){
+        base.ResetSave();
+        color = originColor;
+    }
 
     public void Update(){
         base.Update();
+        currentColor = Vector3.Lerp(currentColor,color,0.1f);
+
         UpdateColor();
     }
 
     public void UpdateColor(){
-        GetComponent<SpriteRenderer>().color = new Color32((byte)color.x,(byte)color.y,(byte)color.z,255);
+        GetComponent<SpriteRenderer>().color = new Color32((byte)currentColor.x,(byte)currentColor.y,(byte)currentColor.z,255);
     }
     //fonctions relative au bloc
     public override string GetName(){
