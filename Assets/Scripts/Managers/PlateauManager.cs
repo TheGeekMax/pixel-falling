@@ -11,12 +11,6 @@ public class PlateauManager : MonoBehaviour{
 
     public int width = 4;
 
-    //variable temporaire
-    public GameObject sand;
-    public GameObject leftSlip;
-    public GameObject unifier;
-    public GameObject splitter;
-
     void Awake(){
         if(instance == null){
             instance = this;
@@ -51,8 +45,7 @@ public class PlateauManager : MonoBehaviour{
                             if(d.ToCreate()){
                                 AddBlocWithoutInstantiate(d.oldCoord,d.newCoord,d.GetBloc());
                             }else if(d.ToDestroy()){
-                                Destroy(plateau[d.oldCoord.x,d.oldCoord.y]);
-                                plateau[d.oldCoord.x,d.oldCoord.y] = null;
+                                RemoveBloc(d.oldCoord.x,d.oldCoord.y);
                             }else{ //on move
                                 plateau[d.newCoord.x,d.newCoord.y] = plateau[d.oldCoord.x,d.oldCoord.y];
                                 plateau[d.oldCoord.x,d.oldCoord.y] = null;
@@ -74,6 +67,14 @@ public class PlateauManager : MonoBehaviour{
         }
     }
 
+    public void SaveState(){
+        ReplayManager.instance.SaveState(plateau);
+    }
+
+    public void LoadState(){
+        ReplayManager.instance.LoadState(plateau);
+    }
+
     public GameObject AddBloc(int x, int y,GameObject bloc){
         if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] != null) return null;
         plateau[x,y] = Instantiate(bloc,new Vector3(x,y,0),Quaternion.identity) as GameObject;
@@ -91,7 +92,6 @@ public class PlateauManager : MonoBehaviour{
 
     public void RemoveBloc(int x, int y){
         if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] == null) return;
-        Destroy(plateau[x,y]);
-        plateau[x,y] = null;
+        ReplayManager.instance.RemoveBloc(new Vector2Int(x,y),plateau);
     }
 }

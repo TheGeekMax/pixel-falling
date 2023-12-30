@@ -7,6 +7,12 @@ public class BinarySlipper : BlocInterface{
     public Sprite spriteRight;
 
     private int state = 0; //0 = left, 1 = right
+
+    public override void ResetSave(){
+        base.ResetSave();
+        state = 0;
+        GetComponent<SpriteRenderer>().sprite = spriteLeft;
+    }
     
     public override string GetName(){
         return "Slipper-binary";
@@ -18,7 +24,7 @@ public class BinarySlipper : BlocInterface{
         if(GetCell(x,y+1,plateau) != null && GetCell(x,y+1,plateau).GetComponent<BlocInterface>().GetName() == "Sand" && GetCell(x,y+1,plateau).GetComponent<SandObject>().IsMoving() == false){
             SandObject currentObject = GetCell(x,y+1,plateau).GetComponent<SandObject>();
             if(state == 0){
-                if(GetCell(x-1,y,plateau) != null || !IsInBounds(x-1,y))
+                if(GetCell(x+1,y,plateau) != null || !IsInBounds(x+1,y))
                     return null;
                 currentObject.Visit();
                 currentObject.SetMoveState(true);
@@ -26,7 +32,7 @@ public class BinarySlipper : BlocInterface{
                 GetComponent<SpriteRenderer>().sprite = spriteRight;
                 return new DataSand[]{new SandMove(new Vector2Int(x,y+1),new Vector2Int(x+1,y))};
             }else{
-                if(GetCell(x+1,y,plateau) != null || !IsInBounds(x+1,y))
+                if(GetCell(x-1,y,plateau) != null || !IsInBounds(x-1,y))
                     return null;
                 currentObject.Visit();
                 currentObject.SetMoveState(true);

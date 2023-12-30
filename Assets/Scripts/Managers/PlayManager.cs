@@ -35,9 +35,11 @@ public class PlayManager : MonoBehaviour{
         if(!GameManager.instance.started){
             GameManager.instance.started = true;
             playText.text = "Pause";
+            PlateauManager.instance.SaveState();
         }else{
             GameManager.instance.started = false;
             playText.text = "Play";
+            PlateauManager.instance.LoadState();
         }
     }
 

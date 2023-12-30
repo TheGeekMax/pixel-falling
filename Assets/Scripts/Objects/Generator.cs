@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Generator : BlocInterface{
 
-    private int timer = 5;
+    private const int TIMER_MAX = 2;
+    private int timer = TIMER_MAX;
     public override string GetName(){
         return "Generator";
+    }
+
+    public override void ResetSave(){
+        base.ResetSave();
+        timer = TIMER_MAX;
     }
 
 
@@ -16,7 +22,7 @@ public class Generator : BlocInterface{
             return null;
         }
         if(GetCell(x,y-1,plateau) == null && IsInBounds(x,y-1)){
-            timer = 5;
+            timer = TIMER_MAX;
             GameObject newSand = Instantiate(BlocManager.instance.GetBloc("sand"), Vector3.zero,Quaternion.identity);
             newSand.GetComponent<SandObject>().Visit();
             newSand.GetComponent<SandObject>().SetMoveState(true);
