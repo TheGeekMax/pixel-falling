@@ -10,11 +10,10 @@ public class ToolManager : MonoBehaviour{
 
 
     //variables temporaire
-    public TextMeshProUGUI toolText;
     public TextMeshProUGUI blocText;
 
 
-    public int tool = 0; //0 - Place, 1 - Remove
+    public ButtonSlide tool; //0 - Place, 1 - remove 2- play
     public int currentBloc = 0;
 
     void Awake(){
@@ -26,7 +25,7 @@ public class ToolManager : MonoBehaviour{
     } 
 
     public void UseTool(Vector2Int coors){
-        switch(tool){
+        switch(tool.index){
             case 0:
                 PlateauManager.instance.AddBloc(coors.x,coors.y,BlocManager.instance.GetBloc(currentBloc));
                 break;
@@ -44,25 +43,12 @@ public class ToolManager : MonoBehaviour{
         blocText.text = BlocManager.instance.GetBloc(currentBloc).name;
     }
 
-    public void ChangeTool(int newTool){
-        tool += newTool;
-        //on remet dans les bornes
-        tool = tool%2;
-        //change text
-        if(tool == 0){
-            toolText.text = "Place";
-        }else{
-            toolText.text = "Remove";
-        }
-    }
-
     void Update(){
         if(!initialized) return;
     }
 
     public void Initialize(){
         ChangeBloc(0);
-        ChangeTool(0);
         initialized = true;
     }
 }
