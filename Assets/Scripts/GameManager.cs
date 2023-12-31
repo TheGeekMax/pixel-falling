@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour{
     void Start(){
         BlocManager.instance.Initialize();
         PlateauManager.instance.Initialize();
+        BackgroundManager.instance.Initialize();
         PlayManager.instance.Initialize();
         ToolManager.instance.Initialize();
         TouchManager.instance.Initialize();

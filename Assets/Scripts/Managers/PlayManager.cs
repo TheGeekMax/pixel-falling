@@ -26,10 +26,10 @@ public class PlayManager : MonoBehaviour{
     void Update(){
         if(!initialized) return;
 
-        if(tool.index == 2 && !playing){
+        if(tool.index == 3 && !playing){
             playing = true;
             Play(true);
-        }else if(tool.index != 2 && playing){
+        }else if(tool.index != 3 && playing){
             playing = false;
             Play(false);
         }

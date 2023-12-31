@@ -22,6 +22,7 @@ public class BlocInterface : MonoBehaviour {
 
     //variables pour la rotation
     public int indexRotation = 0;
+    private int savedRotation = 0;
     public Sprite[] sprites;
 
     //fonctions de unity
@@ -110,6 +111,7 @@ public class BlocInterface : MonoBehaviour {
     public void Save(Vector2Int coors){
         toSave = true;
         saveCoors = coors;
+        savedRotation = indexRotation;
     }
 
     /// <summary>
@@ -120,6 +122,8 @@ public class BlocInterface : MonoBehaviour {
         isDisapearing = false;
         resetCount = 0;
         transform.localScale = Vector3.one;
+        indexRotation = savedRotation;
+        SetSprite();
         //on remet le bloc a sa place
         targetPosition = new Vector3(saveCoors.x,saveCoors.y,0);
     }

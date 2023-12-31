@@ -8,6 +8,7 @@ public class PlateauManager : MonoBehaviour{
     public static PlateauManager instance;
 
     private GameObject[,] plateau;
+    private bool[,] placeable;
 
     public int width = 4;
 
@@ -25,10 +26,12 @@ public class PlateauManager : MonoBehaviour{
 
     public void Initialize(){
         plateau = new GameObject[width,width];
+        placeable = new bool[width,width];
 
         for(int i = 0; i < width; i ++){
             for(int j = 0; j < width; j ++){
                 plateau[i,j] = null;
+                placeable[i,j] = true;
             }
         }
         initialized = true;
@@ -97,5 +100,23 @@ public class PlateauManager : MonoBehaviour{
     public void RemoveBloc(int x, int y){
         if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] == null) return;
         ReplayManager.instance.RemoveBloc(new Vector2Int(x,y),plateau);
+    }
+
+    //fonctions for placeable piece
+    public void SetPlaceable(Vector2Int pos, bool state){
+        if(pos.x < 0 || pos.x >= width || pos.y < 0 || pos.y >= width) return;
+        placeable[pos.x,pos.y] = state;
+        BackgroundManager.instance.UpdateTile(pos);
+    }
+
+    public void TogglePlaceable(Vector2Int pos){
+        if(pos.x < 0 || pos.x >= width || pos.y < 0 || pos.y >= width) return;
+        placeable[pos.x,pos.y] = !placeable[pos.x,pos.y];
+        BackgroundManager.instance.UpdateTile(pos);
+    }
+
+    public bool IsPlaceable(Vector2Int pos){
+        if(pos.x < 0 || pos.x >= width || pos.y < 0 || pos.y >= width) return false;
+        return placeable[pos.x,pos.y];
     }
 }
