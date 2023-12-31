@@ -99,4 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveCoors: {x: 0, y: 0}
   targetPosition: {x: 0, y: 0, z: 0}
+  indexRotation: 0
+  sprites:
+  - {fileID: 440564403, guid: 9d9e57b7f4edfc51280cc4ac6352e6d0, type: 3}
   color: {x: 255, y: 0, z: 0}

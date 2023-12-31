@@ -76,9 +76,13 @@ public class PlateauManager : MonoBehaviour{
     }
 
     public GameObject AddBloc(int x, int y,GameObject bloc){
-        if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] != null) return null;
-        plateau[x,y] = Instantiate(bloc,new Vector3(x,y,0),Quaternion.identity) as GameObject;
-        plateau[x,y].GetComponent<BlocInterface>().SetTargetPosition(new Vector2Int(x,y));
+        if(x < 0 || x >= width || y < 0 || y >= width) return null;
+        if(plateau[x,y] != null){
+            plateau[x,y].GetComponent<BlocInterface>().Rotate();
+        }else{
+            plateau[x,y] = Instantiate(bloc,new Vector3(x,y,0),Quaternion.identity) as GameObject;
+            plateau[x,y].GetComponent<BlocInterface>().SetTargetPosition(new Vector2Int(x,y));
+        }
         return plateau[x,y];
     }
 

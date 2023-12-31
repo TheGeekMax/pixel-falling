@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7649938268582181175}
   - component: {fileID: 2833920480571967944}
   m_Layer: 0
-  m_Name: LeftSlipper
+  m_Name: Slipper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,3 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveCoors: {x: 0, y: 0}
   targetPosition: {x: 0, y: 0, z: 0}
+  indexRotation: 0
+  sprites:
+  - {fileID: -1270176264, guid: 9d9e57b7f4edfc51280cc4ac6352e6d0, type: 3}
+  - {fileID: -630489742, guid: 9d9e57b7f4edfc51280cc4ac6352e6d0, type: 3}

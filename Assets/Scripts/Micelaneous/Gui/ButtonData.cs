@@ -8,4 +8,5 @@ public class ButtonData{
     public GameObject gameObject;
     public Sprite sprite;
     public Sprite spritePressed;
+    public GameObject AssociatedPanel;
 }

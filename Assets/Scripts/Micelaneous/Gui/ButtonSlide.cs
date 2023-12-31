@@ -22,8 +22,14 @@ public class ButtonSlide : MonoBehaviour{
         for(int i = 0; i < buttonData.Length; i++){
             if(i == index){
                 buttonData[i].gameObject.GetComponent<Image>().sprite = buttonData[i].spritePressed;
+                if(buttonData[i].AssociatedPanel != null){
+                    buttonData[i].AssociatedPanel.SetActive(true);
+                }
             }else{
                 buttonData[i].gameObject.GetComponent<Image>().sprite = buttonData[i].sprite;
+                if(buttonData[i].AssociatedPanel != null){
+                    buttonData[i].AssociatedPanel.SetActive(false);
+                }
             }
         }
     }
