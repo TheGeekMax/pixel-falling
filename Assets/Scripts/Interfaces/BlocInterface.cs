@@ -123,6 +123,8 @@ public class BlocInterface : MonoBehaviour {
         resetCount = 0;
         transform.localScale = Vector3.one;
         indexRotation = savedRotation;
+        moving = false;
+        visited = false;
         SetSprite();
         //on remet le bloc a sa place
         targetPosition = new Vector3(saveCoors.x,saveCoors.y,0);

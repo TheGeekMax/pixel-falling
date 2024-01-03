@@ -21,7 +21,7 @@ public class SandObject : BlocInterface{
 
     public void Update(){
         base.Update();
-        currentColor = Vector3.Lerp(currentColor,color,0.1f);
+        currentColor = Vector3.Lerp(currentColor,color,0.3f);
 
         UpdateColor();
     }

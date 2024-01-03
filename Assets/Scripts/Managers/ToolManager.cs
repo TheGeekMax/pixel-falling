@@ -27,7 +27,7 @@ public class ToolManager : MonoBehaviour{
     public void UseTool(Vector2Int coors){
         switch(tool.index){
             case 0:
-                if(PlateauManager.instance.IsPlaceable(coors))
+                if(PlateauManager.instance.IsPlaceable(coors) || PlateauManager.instance.GetBloc(coors.x,coors.y) != null)
                     PlateauManager.instance.AddBloc(coors.x,coors.y,BlocManager.instance.GetBloc(currentBloc));
                 break;
             case 1:
@@ -41,9 +41,7 @@ public class ToolManager : MonoBehaviour{
     }
 
     public void ChangeBloc(int newBloc){
-        currentBloc += newBloc;
-        //on remet dans les bornes
-        currentBloc = currentBloc%BlocManager.instance.GetLength();
+        currentBloc = newBloc;
         //change text
         blocText.text = BlocManager.instance.GetBlocData(currentBloc).name;
     }

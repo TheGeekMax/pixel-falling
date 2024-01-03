@@ -480,7 +480,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -488,6 +488,48 @@ TextureImporter:
       bones: []
       spriteID: 3d8beb3b77eb19079a57caa695be0cb6
       internalID: 1043095820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mixer
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e04917d6667e417debf3a9814ba0fca5
+      internalID: 720206050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ac84464a24c8a87abec4a7ddf215e94
+      internalID: -1290149167
       vertices: []
       indices: 
       edges: []
@@ -508,6 +550,7 @@ TextureImporter:
       binary-slipper-left: -2024811651
       binary_slipper_right: -1685025867
       generator: 614920819
+      mixer: 720206050
       sand: 1519539235
       slipper-left: -1270176264
       slipper_ right: -630489742
@@ -520,6 +563,7 @@ TextureImporter:
       unifier-red-left: 440564403
       unifier-red-right: -83551858
       unifiger-green-right: -506718411
+      wall: -1290149167
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

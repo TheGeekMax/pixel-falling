@@ -97,6 +97,11 @@ public class PlateauManager : MonoBehaviour{
         return plateau[target.x,target.y];
     }
 
+    public GameObject GetBloc(int x, int y){
+        if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] == null) return null;
+        return plateau[x,y];
+    }
+
     public void RemoveBloc(int x, int y){
         if(x < 0 || x >= width || y < 0 || y >= width || plateau[x,y] == null) return;
         ReplayManager.instance.RemoveBloc(new Vector2Int(x,y),plateau);
