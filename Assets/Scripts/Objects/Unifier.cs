@@ -13,14 +13,24 @@ public class Unifier : BlocInterface{
 
     public override DataSand[] GetNextStateData(int x, int y, GameObject[,] plateau){
         Visit();
-        if(GetCell(x-1,y,plateau) != null){
-            BlocInterface bloc = GetCell(x-1,y,plateau).GetComponent<BlocInterface>();
-            if(bloc.GetName() == "Sand"){
-                SandObject sand = GetCell(x-1,y,plateau).GetComponent<SandObject>();
-                Visit();
-                //bloc.Visit();
-                //bloc.SetMoveState(true);
-                sand.color = this.color;
+        if(indexRotation == 0){
+            if(GetCell(x-1,y,plateau) != null){
+                BlocInterface bloc = GetCell(x-1,y,plateau).GetComponent<BlocInterface>();
+                if(bloc.GetName() == "Sand"){
+                    SandObject sand = GetCell(x-1,y,plateau).GetComponent<SandObject>();
+                    Visit();
+                    sand.color = this.color;
+                }
+            }
+        }else{
+            //right
+            if(GetCell(x+1,y,plateau) != null){
+                BlocInterface bloc = GetCell(x+1,y,plateau).GetComponent<BlocInterface>();
+                if(bloc.GetName() == "Sand"){
+                    SandObject sand = GetCell(x+1,y,plateau).GetComponent<SandObject>();
+                    Visit();
+                    sand.color = this.color;
+                }
             }
         }
         return null;

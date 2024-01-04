@@ -99,5 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveCoors: {x: 0, y: 0}
   targetPosition: {x: 0, y: 0, z: 0}
-  spriteLeft: {fileID: -1685025867, guid: 9d9e57b7f4edfc51280cc4ac6352e6d0, type: 3}
-  spriteRight: {fileID: -2024811651, guid: 9d9e57b7f4edfc51280cc4ac6352e6d0, type: 3}
+  indexRotation: 0
+  sprites:
+  - {fileID: -1685025867, guid: 9d9e57b7f4edfc51280cc4ac6352e6d0, type: 3}
+  - {fileID: -2024811651, guid: 9d9e57b7f4edfc51280cc4ac6352e6d0, type: 3}

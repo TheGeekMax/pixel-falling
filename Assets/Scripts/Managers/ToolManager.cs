@@ -10,11 +10,10 @@ public class ToolManager : MonoBehaviour{
 
 
     //variables temporaire
-    public TextMeshProUGUI toolText;
     public TextMeshProUGUI blocText;
 
 
-    public int tool = 0; //0 - Place, 1 - Remove
+    public ButtonSlide tool; //0 - Place, 1 - remove 2- play
     public int currentBloc = 0;
 
     void Awake(){
@@ -26,34 +25,25 @@ public class ToolManager : MonoBehaviour{
     } 
 
     public void UseTool(Vector2Int coors){
-        switch(tool){
+        switch(tool.index){
             case 0:
-                PlateauManager.instance.AddBloc(coors.x,coors.y,BlocManager.instance.GetBloc(currentBloc));
+                if(PlateauManager.instance.IsPlaceable(coors) || PlateauManager.instance.GetBloc(coors.x,coors.y) != null)
+                    PlateauManager.instance.AddBloc(coors.x,coors.y,BlocManager.instance.GetBloc(currentBloc));
                 break;
             case 1:
-                PlateauManager.instance.RemoveBloc(coors.x,coors.y);
+                if(PlateauManager.instance.IsPlaceable(coors))
+                    PlateauManager.instance.RemoveBloc(coors.x,coors.y);
+                break;
+            case 2:
+                PlateauManager.instance.TogglePlaceable(coors);
                 break;
         }
     }
 
     public void ChangeBloc(int newBloc){
-        currentBloc += newBloc;
-        //on remet dans les bornes
-        currentBloc = currentBloc%BlocManager.instance.GetLength();
+        currentBloc = newBloc;
         //change text
-        blocText.text = BlocManager.instance.GetBloc(currentBloc).name;
-    }
-
-    public void ChangeTool(int newTool){
-        tool += newTool;
-        //on remet dans les bornes
-        tool = tool%2;
-        //change text
-        if(tool == 0){
-            toolText.text = "Place";
-        }else{
-            toolText.text = "Remove";
-        }
+        blocText.text = BlocManager.instance.GetBlocData(currentBloc).name;
     }
 
     void Update(){
@@ -62,7 +52,6 @@ public class ToolManager : MonoBehaviour{
 
     public void Initialize(){
         ChangeBloc(0);
-        ChangeTool(0);
         initialized = true;
     }
 }

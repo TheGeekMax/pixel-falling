@@ -37,6 +37,10 @@ public class BlocManager : MonoBehaviour{
         return null;
     }
 
+    public BlocData GetBlocData(int index){
+        return blocs[index];
+    }
+
     public GameObject GetBloc(int index){
         return blocs[index].prefab;
     }
