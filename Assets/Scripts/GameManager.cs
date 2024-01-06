@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour{
         TouchManager.instance.Initialize();
         ReplayManager.instance.Initialize();
         InventoryManager.instance.Initialize();
+        WinManager.instance.Initialize();
     }
 
     // Update is called once per frame

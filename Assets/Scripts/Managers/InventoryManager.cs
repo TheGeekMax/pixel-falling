@@ -12,6 +12,8 @@ public class InventoryManager : MonoBehaviour{
     public GameObject inventoryColor;
     public GameObject inventorySplitter;
 
+    private int[] inventoryCount;
+
     void Awake(){
         if(instance == null){
             instance = this;
@@ -49,6 +51,29 @@ public class InventoryManager : MonoBehaviour{
                     break;
             }
         }
+
+        inventoryCount = new int[BlocManager.instance.GetLength()];
+        for(int i = 0; i < inventoryCount.Length; i++){
+            inventoryCount[i] = 5;
+        }
+
         initialized = true;
+    }
+
+
+    public bool UseIfPossible(int indice){
+        if(inventoryCount[indice] > 0){
+            inventoryCount[indice] --;
+            return true;
+        }
+        return false;
+    }
+
+    public void Add(int indice){
+        inventoryCount[indice] ++;
+    }
+
+    public void Set(int indice, int value){
+        inventoryCount[indice] = value;
     }
 }

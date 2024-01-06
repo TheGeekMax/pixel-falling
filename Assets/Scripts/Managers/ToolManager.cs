@@ -37,6 +37,9 @@ public class ToolManager : MonoBehaviour{
             case 2:
                 PlateauManager.instance.TogglePlaceable(coors);
                 break;
+            case 3:
+                WinManager.instance.UpdateWinBloc(coors);
+                break;
         }
     }
 

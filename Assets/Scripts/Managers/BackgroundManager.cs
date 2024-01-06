@@ -15,6 +15,9 @@ public class BackgroundManager : MonoBehaviour{
     public Tile tile_on;
     public Tile tile_off;
 
+    [Header("Win")]
+    public Tilemap winMap;
+
     void Awake(){
         if(instance == null){
             instance = this;
@@ -48,5 +51,11 @@ public class BackgroundManager : MonoBehaviour{
         }else{
             lockedMap.SetTile(new Vector3Int(coors.x-1,coors.y-1,0),tile_off);
         }
+    }
+
+    public void UpdateWinTile(Vector2Int coors, Tile tile){
+        int width = PlateauManager.instance.width;
+        if(coors.x < 0 || coors.x >= width || coors.y < 0 || coors.y >= width) return;
+        winMap.SetTile(new Vector3Int(coors.x-1,coors.y-1,0),tile);
     }
 }

@@ -9,6 +9,7 @@ public class PlateauManager : MonoBehaviour{
 
     private GameObject[,] plateau;
     private bool[,] placeable;
+    private WinBloc[,] winGrid;
 
     public int width = 4;
 
@@ -27,11 +28,13 @@ public class PlateauManager : MonoBehaviour{
     public void Initialize(){
         plateau = new GameObject[width,width];
         placeable = new bool[width,width];
+        winGrid = new WinBloc[width,width];
 
         for(int i = 0; i < width; i ++){
             for(int j = 0; j < width; j ++){
                 plateau[i,j] = null;
                 placeable[i,j] = true;
+                winGrid[i,j] = null;
             }
         }
         initialized = true;
@@ -67,6 +70,11 @@ public class PlateauManager : MonoBehaviour{
                     plateau[i,j].GetComponent<BlocInterface>().Reset();
                 }
             }
+        }
+
+        //check win
+        if(WinManager.instance.IsWin(plateau)){
+            WinManager.instance.Win();
         }
     }
 
@@ -123,5 +131,16 @@ public class PlateauManager : MonoBehaviour{
     public bool IsPlaceable(Vector2Int pos){
         if(pos.x < 0 || pos.x >= width || pos.y < 0 || pos.y >= width) return false;
         return placeable[pos.x,pos.y];
+    }
+
+    //fonctions for win grid
+    public void SetWinBloc(Vector2Int pos, WinBloc bloc){
+        if(pos.x < 0 || pos.x >= width || pos.y < 0 || pos.y >= width) return;
+        winGrid[pos.x,pos.y] = bloc;
+    }
+
+    public WinBloc GetWinBloc(Vector2Int pos){
+        if(pos.x < 0 || pos.x >= width || pos.y < 0 || pos.y >= width) return null;
+        return winGrid[pos.x,pos.y];
     }
 }
