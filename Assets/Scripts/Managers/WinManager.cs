@@ -53,8 +53,9 @@ public class WinManager : MonoBehaviour{
 
     public bool IsWin(GameObject[,] plateau){
         int width = PlateauManager.instance.width;
+        int height = PlateauManager.instance.height;
         for(int i = 0; i < width; i ++){
-            for(int j = 0; j < width; j ++){
+            for(int j = 0; j < height; j ++){
                 WinBloc winBloc = PlateauManager.instance.GetWinBloc(new Vector2Int(i,j));
                 if(winBloc != null && !winBloc.IsWin(i,j,plateau)){
                     return false;

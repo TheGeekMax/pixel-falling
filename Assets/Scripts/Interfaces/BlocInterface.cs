@@ -25,6 +25,9 @@ public class BlocInterface : MonoBehaviour {
     private int savedRotation = 0;
     public Sprite[] sprites;
 
+    //variables pour les ids
+    public int id = -1;
+
     //fonctions de unity
 
     /// <summary>
@@ -185,7 +188,7 @@ public class BlocInterface : MonoBehaviour {
     /// <param name="plateau">The plateau containing the cells.</param>
     /// <returns>The cell at the specified coordinates, or null if the coordinates are out of bounds.</returns>
     public GameObject GetCell(int x, int y, GameObject[,] plateau){
-        if(x < 0 || x >= PlateauManager.instance.width || y < 0 || y >= PlateauManager.instance.width){
+        if(x < 0 || x >= PlateauManager.instance.width || y < 0 || y >= PlateauManager.instance.height){
             return null;
         }
         return plateau[x,y];
@@ -198,7 +201,7 @@ public class BlocInterface : MonoBehaviour {
     /// <param name="y">The y-coordinate to check.</param>
     /// <returns>True if the coordinates are within the bounds of the plateau, false otherwise.</returns>
     public bool IsInBounds(int x, int y){
-        return x >= 0 && x < PlateauManager.instance.width && y >= 0 && y < PlateauManager.instance.width;
+        return x >= 0 && x < PlateauManager.instance.width && y >= 0 && y < PlateauManager.instance.height;
     }
 
     /// <summary>
@@ -228,5 +231,23 @@ public class BlocInterface : MonoBehaviour {
 
     private void SetSprite(){
         GetComponent<SpriteRenderer>().sprite = sprites[indexRotation];
+    }
+
+    //fonctions pour les ids
+
+    /// <summary>
+    /// Sets the ID of the block.
+    /// </summary>
+    /// <param name="id">The ID to set.</param>
+    public void SetId(int id){
+        this.id = id;
+    }
+
+    /// <summary>
+    /// Gets the ID of the block.
+    /// </summary>
+    /// <returns>The ID of the block.</returns>
+    public int GetId(){
+        return id;
     }
 }

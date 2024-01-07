@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour{
 
     void Start(){
         BlocManager.instance.Initialize();
+
+        CodeManager.instance.Initialize();
+
         PlateauManager.instance.Initialize();
         BackgroundManager.instance.Initialize();
         PlayManager.instance.Initialize();
@@ -33,7 +36,10 @@ public class GameManager : MonoBehaviour{
 
     // Update is called once per frame
     void FixedUpdate(){
-        if(!started) return;
+        if(!started){
+            CodeManager.instance.Encode();
+            return;
+        }
         
         if(step ++ > 10){
             step = 0;

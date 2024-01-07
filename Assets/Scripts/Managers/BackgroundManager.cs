@@ -33,7 +33,7 @@ public class BackgroundManager : MonoBehaviour{
     public void Initialize(){
         //on se base Plateaumanager
         for(int i = 0; i < PlateauManager.instance.width; i ++){
-            for(int j = 0; j < PlateauManager.instance.width; j ++){
+            for(int j = 0; j < PlateauManager.instance.height; j ++){
                 if(PlateauManager.instance.IsPlaceable(new Vector2Int(i,j))){
                     lockedMap.SetTile(new Vector3Int(i-1,j-1,0),tile_on);
                 }else{
@@ -54,8 +54,8 @@ public class BackgroundManager : MonoBehaviour{
     }
 
     public void UpdateWinTile(Vector2Int coors, Tile tile){
-        int width = PlateauManager.instance.width;
-        if(coors.x < 0 || coors.x >= width || coors.y < 0 || coors.y >= width) return;
+        int height = PlateauManager.instance.height;
+        if(coors.x < 0 || coors.x >= height || coors.y < 0 || coors.y >= height) return;
         winMap.SetTile(new Vector3Int(coors.x-1,coors.y-1,0),tile);
     }
 }
