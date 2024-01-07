@@ -22,6 +22,9 @@ public class BlocManager : MonoBehaviour{
     }
 
     public void Initialize(){
+        for(int i = 0; i < blocs.Length; i++){
+            blocs[i].prefab.GetComponent<BlocInterface>().SetId(i);
+        }
         //TODO : dict of <int,BlocType> with int number of blocs of this type
         initialized = true;
     }

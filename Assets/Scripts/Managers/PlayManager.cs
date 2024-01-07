@@ -26,10 +26,10 @@ public class PlayManager : MonoBehaviour{
     void Update(){
         if(!initialized) return;
 
-        if(tool.index == 3 && !playing){
+        if(tool.index == 4 && !playing){
             playing = true;
             Play(true);
-        }else if(tool.index != 3 && playing){
+        }else if(tool.index != 4 && playing){
             playing = false;
             Play(false);
         }
@@ -49,6 +49,7 @@ public class PlayManager : MonoBehaviour{
         }else{
             GameManager.instance.started = false;
             PlateauManager.instance.LoadState();
+            WinManager.instance.Reset();
         }
     }
 

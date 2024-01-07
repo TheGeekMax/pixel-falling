@@ -29,7 +29,7 @@ public class ReplayManager : MonoBehaviour{
     public void SaveState(GameObject[,] plateau){
         //on parcours tout le plateau
         for(int i = 0; i < PlateauManager.instance.width; i++){
-            for(int j = 0; j < PlateauManager.instance.width; j++){
+            for(int j = 0; j < PlateauManager.instance.height; j++){
                 if(plateau[i,j] != null){
                     //on sauvegarde le bloc
                     plateau[i,j].GetComponent<BlocInterface>().Save(new Vector2Int(i,j));
@@ -47,10 +47,10 @@ public class ReplayManager : MonoBehaviour{
     }
 
     public void LoadState(GameObject[,] plateau){
-        GameObject[,] newPlateau = new GameObject[PlateauManager.instance.width,PlateauManager.instance.width];
+        GameObject[,] newPlateau = new GameObject[PlateauManager.instance.width,PlateauManager.instance.height];
         //on parcours tout
         for(int i = 0; i < PlateauManager.instance.width; i++){
-            for(int j = 0; j < PlateauManager.instance.width; j++){
+            for(int j = 0; j < PlateauManager.instance.height; j++){
                 if(plateau[i,j] != null){
                     //on remet le bloc a sa place
                     if(plateau[i,j].GetComponent<BlocInterface>().GetSave()){
@@ -75,7 +75,7 @@ public class ReplayManager : MonoBehaviour{
 
         //on met a jour le plateau
         for(int i = 0; i < PlateauManager.instance.width; i++){
-            for(int j = 0; j < PlateauManager.instance.width; j++){
+            for(int j = 0; j < PlateauManager.instance.height; j++){
                 plateau[i,j] = newPlateau[i,j];
             }
         }

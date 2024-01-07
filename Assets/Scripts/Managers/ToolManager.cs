@@ -27,15 +27,23 @@ public class ToolManager : MonoBehaviour{
     public void UseTool(Vector2Int coors){
         switch(tool.index){
             case 0:
-                if(PlateauManager.instance.IsPlaceable(coors) || PlateauManager.instance.GetBloc(coors.x,coors.y) != null)
+                if(PlateauManager.instance.GetBloc(coors.x,coors.y) != null || (PlateauManager.instance.IsPlaceable(coors) && InventoryManager.instance.UseIfPossible(currentBloc)))
                     PlateauManager.instance.AddBloc(coors.x,coors.y,BlocManager.instance.GetBloc(currentBloc));
                 break;
             case 1:
-                if(PlateauManager.instance.IsPlaceable(coors))
-                    PlateauManager.instance.RemoveBloc(coors.x,coors.y);
+                if(PlateauManager.instance.IsPlaceable(coors)){
+                    if(PlateauManager.instance.GetBloc(coors.x,coors.y) != null){
+                        int index = PlateauManager.instance.GetBlocId(coors.x,coors.y);
+                        InventoryManager.instance.Add(index);
+                        PlateauManager.instance.RemoveBloc(coors.x,coors.y);
+                    }
+                }
                 break;
             case 2:
                 PlateauManager.instance.TogglePlaceable(coors);
+                break;
+            case 3:
+                WinManager.instance.UpdateWinBloc(coors);
                 break;
         }
     }
