@@ -2550,6 +2550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423398750}
+  - component: {fileID: 1423398762}
   - component: {fileID: 1423398761}
   - component: {fileID: 1423398752}
   - component: {fileID: 1423398751}
@@ -2791,7 +2792,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c1e484d9aba854097e5790e71edf84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  code: 77//000000000
+  code: 77000000000yF301401501-231343463543631-010
+--- !u!114 &1423398762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423398749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acf30a042194d349be0660e098bf54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSandbox: 0
+  maxBlockCount: 64
+  toDisable:
+  - {fileID: 2019812526}
+  - {fileID: 1227710849}
 --- !u!1 &1504919786
 GameObject:
   m_ObjectHideFlags: 0
