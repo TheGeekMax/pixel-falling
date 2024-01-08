@@ -31,6 +31,8 @@ public class CodeManager : MonoBehaviour{
     }
 
     public void Initialize(){
+        code = KeepElement.instance.levelCode;
+
         data64 = new Alphabet(Alphabet.default64,6);
 
         //get width and height
@@ -111,6 +113,8 @@ public class CodeManager : MonoBehaviour{
             charIndex ++;
             int count = data64.Get(code[charIndex]);
             charIndex ++;
+            count += data64.Get(code[charIndex])*64;
+            charIndex ++;
 
             inventoryCount[id] = count;
         }
@@ -176,8 +180,6 @@ public class CodeManager : MonoBehaviour{
             charIndex ++;
         }
 
-        code += "-";
-
         //encode win map
         for(int i = 0; i < width; i ++){
             for(int j = 0; j < height; j ++){
@@ -208,7 +210,8 @@ public class CodeManager : MonoBehaviour{
         for(int i = 0; i < inventoryCount.Length; i ++){
             if(inventoryCount[i] != 0){
                 code += data64.Get(i);
-                code += data64.Get(inventoryCount[i]);
+                code += data64.Get(inventoryCount[i]%64);
+                code += data64.Get(inventoryCount[i]/64);
             }
         }
     }

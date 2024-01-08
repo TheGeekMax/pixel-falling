@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour{
     }
 
     void Start(){
+        if(KeepElement.instance == null) UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+
+        SandBoxManager.instance.Initialize();
         BlocManager.instance.Initialize();
 
         CodeManager.instance.Initialize();

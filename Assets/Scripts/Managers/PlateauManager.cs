@@ -106,6 +106,10 @@ public class PlateauManager : MonoBehaviour{
         ReplayManager.instance.LoadState(plateau);
     }
 
+    public bool IsInBounds(Vector2Int pos){
+        return pos.x >= 0 && pos.x < width && pos.y >= 0 && pos.y < height;
+    }
+
     public GameObject AddBloc(int x, int y,GameObject bloc){
         if(x < 0 || x >= width || y < 0 || y >= height) return null;
         if(plateau[x,y] != null){

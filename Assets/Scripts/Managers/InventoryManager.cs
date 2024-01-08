@@ -61,7 +61,11 @@ public class InventoryManager : MonoBehaviour{
 
         inventoryCount = new int[BlocManager.instance.GetLength()];
         for(int i = 0; i < inventoryCount.Length; i++){
-            Set(i,CodeManager.instance.GetInventoryCount(i));
+            if(SandBoxManager.instance.isSandbox){
+                Set(i,SandBoxManager.instance.maxBlockCount);
+            }else{
+                Set(i,CodeManager.instance.GetInventoryCount(i));
+            }
             inventory[i].GetComponent<BlocButton>().SetCount(inventoryCount[i]);
         }
 
